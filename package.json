@@ -1,0 +1,12 @@
+{
+  "name": "DozeJS",
+  "version": "0.0.1",
+  "description": "Framework for Front-End Application with RESTful Data Layer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Fluidbyte/dozejs.git"
+  },
+  "dependencies": {
+
+  }
+}
