@@ -1,19 +1,27 @@
-/**
- * Core configuration for Doze
- */
-var env = {};
-var db = {};
+// Core configuration for DozeJS
+var config = {
 
-/**
- * Environment configuration
- */
-env.public = "/_public/src";
-env.port = 8181;
+  // Environment configuration
+  env: {
+    // Public root
+    public_http: 'public/src',
+    // Port to run over
+    port: 8181
+  },
 
-/**
- * Database/store configuration
- */
-db.adapter = "nedb";
+  // Database store configuration
+  db: {
 
-// DB config settings, specific to adapter
-db.config.store = "/db";
+    // Specify adapter to use
+    adapter: 'nedb',
+
+    // Adapter specific configuration
+    config: {
+      store: '/db'
+    }
+
+  }
+
+};
+
+module.exports = config;
