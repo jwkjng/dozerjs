@@ -1,3 +1,6 @@
+/**
+ * Core configuration for Doze
+ */
 var env = {};
 var db = {};
 
