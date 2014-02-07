@@ -9,6 +9,7 @@ var api = require('./api.js');
 var web = require('./web.js');
 
 // Basic express config
+app.enable('strict routing');
 app.use(express.json());
 app.use(express.urlencoded());
 
