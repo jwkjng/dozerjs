@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "express": "~3.4.8",
-    "connect-multiparty": "~1.0.3"
+    "connect-multiparty": "~1.0.3",
+    "express-slash": "~1.0.0"
   }
 }
