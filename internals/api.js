@@ -25,18 +25,22 @@ var api = {
     var method;
     // Ensures endpoint exists
     if (api.endpoints.hasOwnProperty(endpoint)) {
+      console.log(reqMethod);
       // Build array of supported methods
-      for (var method in endpoints[endpoint]) {
-        supportedMethods.push(method);
+      for (method in api.endpoints[endpoint]) {
+        supportedMethods.push(method.toUpperCase());
       }
       // Ensure endpoint supports method
-      if(supportedMethods.indexOf(reqMethod)) {
+      if(supportedMethods.indexOf(reqMethod) >= 0) {
 
       } else {
-        res.header
-        res.send()
+        // Send allowed methods in header
+        res.header("Access-Control-Allow-Methods", supportedMethods.join());
+        // Send 405 - Method not allowed
+        res.send(405, { "status": "error", "message": "Method not allowed" });
       }
     } else {
+      // Endpoint not found
       res.send(404, { "status": "error", "message": "Endpoint does not exist" });
     }
   }
