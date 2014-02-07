@@ -1,4 +1,4 @@
-// Core configuration for DozeJS
+// Core configuration for DozerJS
 var config = {
 
   // Environment configuration

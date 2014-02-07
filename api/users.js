@@ -1,7 +1,7 @@
 /**
  * Simple example of a "users" api endpoint
  */
-module.exports.users = {
+var users = {
 
   // Handle GET method
   "get": function (req, res) {
@@ -23,3 +23,5 @@ module.exports.users = {
 
   }
 };
+
+module.exports = users;
