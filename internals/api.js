@@ -32,7 +32,7 @@ var api = {
       }
       // Ensure endpoint supports method
       if(supportedMethods.indexOf(reqMethod) >= 0) {
-
+        res.send("Connected via " + reqMethod);
       } else {
         // Send allowed methods in header
         res.header("Access-Control-Allow-Methods", supportedMethods.join());
