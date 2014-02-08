@@ -1,3 +1,5 @@
+<span style="float: right; padding: 0 0 15px 15px">![DozerJS](logo.png)</span>
+
 # DozerJS
 
 Dozer is a system for rapidly developing services to support front-end applications.
