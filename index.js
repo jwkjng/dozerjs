@@ -2,14 +2,14 @@
 // It initializes the api and web controllers and starts the static web service
 var express = require('express');
 var app = express();
-var stdout = require('./stdout');
+var stdout = require('./lib/stdout');
 var slash = require('express-slash');
 var multipart = require('connect-multiparty');
 var multiparty = multipart();
-var config = require('../config.js');
-var adapters = require('./adapters.js');
-var api = require('./api.js');
-var web = require('./web.js');
+var config = require('./config.js');
+var adapters = require('./lib/adapters.js');
+var api = require('./lib/api.js');
+var web = require('./lib/web.js');
 var middleware = config.middleware;
 
 // Initialize adapters
