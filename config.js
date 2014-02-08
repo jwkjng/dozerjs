@@ -20,7 +20,12 @@ var config = {
       store: '/db'
     }
 
-  }
+  },
+
+  // Custom express middleware
+  middleware: [
+    'exCustomHeader'
+  ]
 
 };
 
