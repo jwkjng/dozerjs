@@ -1,4 +1,4 @@
-<span style="float: right; padding: 0 0 15px 15px">![DozerJS](logo.png)</span>
+<img align="right" src="logo.png">
 
 # DozerJS
 
