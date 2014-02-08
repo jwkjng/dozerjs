@@ -1,6 +1,6 @@
-<img align="right" src="logo.png">
-
 # DozerJS
+
+<img align="right" src="logo.png">
 
 Dozer is a system for rapidly developing services to support front-end applications.
 
