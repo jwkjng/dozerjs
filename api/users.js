@@ -4,24 +4,24 @@ module.exports.users = {
   // Handle GET method
   'get': {
     controller: 'users',
-    method: 'get'
+    method: 'getUser'
   },
 
   // Handle POST method
   'post': {
     controller: 'users',
-    method: 'create'
+    method: 'createUser'
   },
 
   // Handle PUT method
   'put': {
     controller: 'users',
-    method: 'update'
+    method: 'updateUser'
   },
 
   // Handle DELETE method
   'delete': {
     controller: 'users',
-    method: 'delete'
+    method: 'deleteUser'
   }
 };

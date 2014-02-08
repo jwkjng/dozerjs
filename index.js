@@ -13,7 +13,7 @@ var web = require('./lib/web.js');
 var middleware = config.middleware;
 
 // Load adapters
-modules.load('adapters');
+modules.load('components');
 
 // Load controllers
 modules.load('controllers');
@@ -27,8 +27,8 @@ modules.load('api');
 // Initialize custom middleware
 stdout('title','LOADING MIDDLEWARE');
 for (var i=0, z=middleware.length; i<z; i++) {
-  if (modules.adapters.hasOwnProperty(middleware[i])) {
-    app.use(modules.adapters[middleware[i]]);
+  if (modules.components.hasOwnProperty(middleware[i])) {
+    app.use(modules.components[middleware[i]]);
     stdout('output', 'MIDDLEWARE Applied: ' + middleware[i]);
   } else {
     stdout('error', 'ADAPTER Missing: ' + middleware[i]);

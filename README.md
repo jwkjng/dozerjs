@@ -20,9 +20,9 @@ number of common configuration properties, handles RESTful API endpoints and
 serves static files. It then reads in the application configuration, loads any
 adapters and builds the API endpoints.
 
-## Adapters
+## Components
 
-Adapters are simply modules which are loaded and available throughout the application.
+Components are simply modules which are loaded and available throughout the application.
 The can be database modules, express middleware or anything else required by the
 application or any of the controllers.
 
@@ -47,6 +47,6 @@ data.
 ## View/Public
 
 Dozer builds a server solution for developing front-end applications which interact
-with API's, sockets and whatever else is provided by the server component. On
+with API's, sockets and whatever else is provided by the server. On
 startup Dozer builds a static server instance through the `public` directory which
 serves all assets used by the application.

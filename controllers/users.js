@@ -1,18 +1,18 @@
 // Simple example of a "users" controller
 module.exports.users = {
-  get: function (req, res) {
+  getUser: function (req, res) {
 
   },
 
-  create: function (req, res) {
+  createUser: function (req, res) {
 
   },
 
-  update: function (req, res) {
+  updateUser: function (req, res) {
 
   },
 
-  delete: function (req, res) {
+  deleteUser: function (req, res) {
 
   }
 };

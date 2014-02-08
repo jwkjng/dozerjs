@@ -1,4 +1,4 @@
-// Socket.io adapter
+// Socket.io component
 var socketio = {
 
 };
