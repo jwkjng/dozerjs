@@ -14,17 +14,18 @@ var middleware = config.middleware;
 // Initialize adapters
 adapters.init();
 
+// Initialize custom middleware
+for (var i=0, z=middleware.length; i<z; i++) {
+  app.use(adapters[middleware[i]]);
+  console.log("Using ", middleware[i]);
+}
+
 // Basic express config
 app.enable('strict routing');
 app.use(app.router);
 app.use(slash());
 app.use(express.json());
 app.use(express.urlencoded());
-
-// Initialize custom middleware
-for (var i=0, z=middleware.length; i<z; i++) {
-  app.use(adapters[middleware[i]]);
-}
 
 // Initialize API
 api.init();

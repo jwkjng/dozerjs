@@ -24,7 +24,8 @@ var config = {
 
   // Custom express middleware
   middleware: [
-    'exCustomHeader'
+    'exCustomHeader',
+    'corsPolicy'
   ]
 
 };
