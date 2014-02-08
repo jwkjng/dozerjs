@@ -1,7 +1,7 @@
 {
   "name": "DozeJS",
   "version": "0.0.1",
-  "description": "Framework for Front-End Application with RESTful Data Layer",
+  "description": "Foundation for Front-End Applications with RESTful Data Layer",
   "repository": {
     "type": "git",
     "url": "https://github.com/Fluidbyte/dozejs.git"
@@ -9,6 +9,9 @@
   "dependencies": {
     "express": "~3.4.8",
     "connect-multiparty": "~1.0.3",
-    "express-slash": "~1.0.0"
+    "express-slash": "~1.0.0",
+    "socket.io": "~0.9.16",
+    "nedb": "~0.10.2",
+    "grunt-cli": "~0.1.13"
   }
 }
