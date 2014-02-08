@@ -1,10 +1,21 @@
 /**
  * Doze NeDB Adapter
  * @constructor db
+ * @param {string} table - The table to query
  * @param {object} config - DB config object
  */
-var db = function (config) {
+var db = function (table, config) {
+  this.table = table;
   this.config = config;
+};
+
+/**
+ * Returns the entire data set
+ * @method all
+ * @returns {object} all records
+ */
+db.prototype.all = function () {
+
 };
 
 /**
