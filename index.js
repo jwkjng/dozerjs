@@ -18,6 +18,9 @@ modules.load('adapters');
 // Load controllers
 modules.load('controllers');
 
+// Load models
+modules.load('models');
+
 // Load API endpoints
 modules.load('api');
 
