@@ -7,19 +7,25 @@ var slash = require('express-slash');
 var multipart = require('connect-multiparty');
 var multiparty = multipart();
 var config = require('./config.js');
-var adapters = require('./lib/adapters.js');
+var modules = require('./lib/modules.js');
 var api = require('./lib/api.js');
 var web = require('./lib/web.js');
 var middleware = config.middleware;
 
-// Initialize adapters
-adapters.init();
+// Load adapters
+modules.load('adapters');
+
+// Load controllers
+modules.load('controllers');
+
+// Load API endpoints
+modules.load('api');
 
 // Initialize custom middleware
 stdout('title','LOADING MIDDLEWARE');
 for (var i=0, z=middleware.length; i<z; i++) {
-  if (adapters.hasOwnProperty(middleware[i])) {
-    app.use(adapters[middleware[i]]);
+  if (modules.adapters.hasOwnProperty(middleware[i])) {
+    app.use(modules.adapters[middleware[i]]);
     stdout('output', 'MIDDLEWARE Applied: ' + middleware[i]);
   } else {
     stdout('error', 'ADAPTER Missing: ' + middleware[i]);
@@ -32,9 +38,6 @@ app.use(app.router);
 app.use(slash());
 app.use(express.json());
 app.use(express.urlencoded());
-
-// Initialize API
-api.init();
 
 // Process API calls
 app.all('/api/:endpoint*', multiparty, api.process);
