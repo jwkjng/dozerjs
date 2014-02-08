@@ -1,27 +1,27 @@
-/**
- * Simple example of a "users" api endpoint
- */
-var users = {
+// Simple example of a "users" api endpoint
+module.exports.users = {
 
   // Handle GET method
-  "get": function (req, res) {
-
+  'get': {
+    controller: 'users',
+    method: 'get'
   },
 
   // Handle POST method
-  "post": function (req, res) {
-
+  'post': {
+    controller: 'users',
+    method: 'create'
   },
 
   // Handle PUT method
-  "put": function (req, res) {
-
+  'put': {
+    controller: 'users',
+    method: 'update'
   },
 
   // Handle DELETE method
-  "delete": function (req, res) {
-
+  'delete': {
+    controller: 'users',
+    method: 'delete'
   }
 };
-
-module.exports = users;

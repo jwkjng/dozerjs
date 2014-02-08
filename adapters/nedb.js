@@ -1,5 +1,7 @@
+var Datastore = require('nedb');
+var data = new Datastore();
 /**
- * Doze NeDB Adapter
+ * DozerJS NeDB Adapter
  * @constructor db
  * @param {string} table - The table to query
  * @param {object} config - DB config object
