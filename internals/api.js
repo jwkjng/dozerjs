@@ -1,4 +1,5 @@
-var fs = require("fs");
+var fs = require('fs');
+var stdout = require('./stdout.js');
 
 // Manages the API endpoints
 var api = {
@@ -9,10 +10,11 @@ var api = {
   // Initializes the endpoints by loading them into the endpoints object
   init: function () {
     var self = this;
+    stdout('title','LOADING API ENDPOINTS');
     fs.readdirSync('api').forEach(function (file) {
       if (file.split('.').pop() === 'js') {
         self.endpoints[file.replace('.js', '')] = require('../api/'+file);
-        console.log("API Loaded: "+file);
+        stdout('output','API Loaded: '+file);
       }
     });
   },
@@ -25,7 +27,6 @@ var api = {
     var method;
     // Ensures endpoint exists
     if (api.endpoints.hasOwnProperty(endpoint)) {
-      console.log(reqMethod);
       // Build array of supported methods
       for (method in api.endpoints[endpoint]) {
         supportedMethods.push(method.toUpperCase());
