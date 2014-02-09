@@ -1,5 +1,5 @@
 var Datastore = require('nedb');
-var data = new Datastore();
+var store;
 /**
  * DozerJS NeDB component
  * @constructor db
@@ -9,6 +9,8 @@ var data = new Datastore();
 var db = function (table, config) {
   this.table = table;
   this.config = config;
+  store = new Datastore( '../' + config.db.store + '/' + table + '.db');
+	store.loadDatabase();
 };
 
 /**
@@ -16,8 +18,8 @@ var db = function (table, config) {
  * @method all
  * @returns {object} all records
  */
-db.prototype.all = function () {
-
+db.prototype.all = function (cb) {
+  store.find({}, cb);
 };
 
 /**
@@ -28,8 +30,8 @@ db.prototype.all = function () {
  * @param {number} limit - Max results
  * @returns {object|boolean} record(s) found or false
  */
-db.prototype.find = function (field, query, limit) {
-
+db.prototype.find = function (field, query, limit, cb) {
+  store.find({ field: query }).limit(limit).exec(cb);
 };
 
 /**
@@ -37,8 +39,8 @@ db.prototype.find = function (field, query, limit) {
  * @method findOne
  * @returns {object|boolean} record in table or false
  */
-db.prototype.findOne = function (field, query) {
-  return this.find(field, query, 1);
+db.prototype.findOne = function (field, query, cb) {
+  this.find(field, query, 1, cb);
 };
 
 /**
@@ -47,8 +49,8 @@ db.prototype.findOne = function (field, query) {
  * @param {object} data - Data to store
  * @returns {object} record created
  */
-db.prototype.insert = function (data) {
-
+db.prototype.insert = function (data, cb) {
+  store.insert(data, cb);
 };
 
 /**
@@ -58,8 +60,8 @@ db.prototype.insert = function (data) {
  * @param {string} query - Data to match
  * @param {object} data - Data to replace
  */
-db.prototype.update = function (field, query, data) {
-
+db.prototype.update = function (field, query, data, cb) {
+  store.update({ field: query }, data, cb);
 };
 
 /**
@@ -68,6 +70,6 @@ db.prototype.update = function (field, query, data) {
  * @param {string} field - Field to match
  * @param {string} query - Data to match
  */
-db.prototype.remove = function (field, query) {
-
+db.prototype.remove = function (field, query, cb) {
+  store.remove({ field: query }, cb);
 };

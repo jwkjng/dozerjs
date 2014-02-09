@@ -17,7 +17,7 @@ var config = {
 
     // Adapter specific configuration
     config: {
-      store: '/db'
+      store: 'data'
     }
 
   },
