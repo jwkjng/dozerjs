@@ -1,27 +1,27 @@
 // Simple example of a "users" api endpoint
-module.exports.users = {
+module.exports = {
 
   // Handle GET method
-  'get': {
+  'GET': {
     controller: 'users',
-    method: 'getUser'
+    fn: 'getUser'
   },
 
   // Handle POST method
-  'post': {
+  'POST': {
     controller: 'users',
-    method: 'createUser'
+    fn: 'createUser'
   },
 
   // Handle PUT method
-  'put': {
+  'PUT': {
     controller: 'users',
-    method: 'updateUser'
+    fn: 'updateUser'
   },
 
   // Handle DELETE method
-  'delete': {
+  'DELETE': {
     controller: 'users',
-    method: 'deleteUser'
+    fn: 'deleteUser'
   }
 };

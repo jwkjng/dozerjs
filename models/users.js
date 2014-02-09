@@ -1,5 +1,5 @@
 // Example "users" model
-module.exports.users = {
+module.exports = {
   'name': 'string',
   'email': 'email',
   'password': 'password',
