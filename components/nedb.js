@@ -14,9 +14,16 @@ var db = function (table, config) {
 };
 
 /**
+ * Returns number of records
+ * @method count
+ */
+db.prototype.count = function (field, query, cb) {
+  store.count({ field: query }, cb);
+};
+
+/**
  * Returns the entire data set
  * @method all
- * @returns {object} all records
  */
 db.prototype.all = function (cb) {
   store.find({}, cb);
@@ -28,16 +35,16 @@ db.prototype.all = function (cb) {
  * @param {string} field - Field to search
  * @param {string} query - String to search for
  * @param {number} limit - Max results
- * @returns {object|boolean} record(s) found or false
  */
 db.prototype.find = function (field, query, limit, cb) {
   store.find({ field: query }).limit(limit).exec(cb);
 };
 
 /**
- * Returns all data in table
+ * Returns single record in table
  * @method findOne
- * @returns {object|boolean} record in table or false
+ * @param {string} field - Field to search
+ * @param {string} query - String to search for
  */
 db.prototype.findOne = function (field, query, cb) {
   this.find(field, query, 1, cb);
@@ -47,7 +54,6 @@ db.prototype.findOne = function (field, query, cb) {
  * Adds a new record to the table
  * @method insert
  * @param {object} data - Data to store
- * @returns {object} record created
  */
 db.prototype.insert = function (data, cb) {
   store.insert(data, cb);
