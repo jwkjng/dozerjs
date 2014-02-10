@@ -15,7 +15,7 @@ var validation = function (data, model) {
                 result = (typeof value === "boolean" || value === "true" || value === "false") ? true : false;
                 break;
             case 'array':
-                result = (typeof value === 'object') ? true : false;
+                result = (Object.prototype.toString.call( value ) === '[object Array]') ? true : false;
                 break;
         }
         console.log("Typeof is "+typeof value);
