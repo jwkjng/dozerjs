@@ -1,5 +1,25 @@
 // Validation for data models
+
+// Mocking in http://jsfiddle.net/xbX3c/10/
 var validation = function (data, model) {
+
+    var regEx = {
+        alphanum: /^[a-zA-Z0-9]+$/,
+        email: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        url: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/,
+        ipv4: /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,
+        phone: /^(([0-9]{1})*[- .(]*([0-9]{3})[- .)]*[0-9]{3}[- .]*[0-9]{4})+$/,
+        ssn: /^([0-9]{3}[-]*[0-9]{2}[-]*[0-9]{4})+$/
+    };
+
+    var validJSON = function (value) {
+        try {
+            JSON.parse(value);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    };
 
     function processNode(key, value, valid) {
         console.log(key + ": " + value + ", should be a " + valid);
@@ -17,8 +37,12 @@ var validation = function (data, model) {
             case 'array':
                 result = (Object.prototype.toString.call( value ) === '[object Array]') ? true : false;
                 break;
+            case 'json':
+                result = validJSON(value);
+                break;
+            default:
+                result = (regEx.hasOwnProperty(valid)) ? regEx[valid].test(value) : false;
         }
-        console.log("Typeof is "+typeof value);
         console.log("Result is "+result);
         return result;
     }
