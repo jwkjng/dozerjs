@@ -1,11 +1,11 @@
-// Get modules
-var modules = require('../lib/modules.js');
-// Setup db
-var userTable = modules.lib.db('users');
-
 // Simple example of a "users" controller
 module.exports = {
-  getUser: function (req, res) {
+
+  // Define data tables/stores to access
+  data: [ 'users' ],
+
+  getUser: function (req, res, data) {
+    console.log(data);
     res.send({ "GET": "User" });
   },
 
