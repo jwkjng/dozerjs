@@ -16,10 +16,13 @@ var validation = function (data, model, cb) {
   var failures = [];
   var regEx;
   var validJSON;
+  var processNode;
+  var result;
+  var traverseNodes;
 
   regEx = {
     alphanum: /^[a-zA-Z0-9]+$/,
-    email: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    email: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
     url: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/,
     ipv4: /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,
     phone: /^(([0-9]{1})*[- .(]*([0-9]{3})[- .)]*[0-9]{3}[- .]*[0-9]{4})+$/,
@@ -35,8 +38,8 @@ var validation = function (data, model, cb) {
     return true;
   };
 
-  function processNode(key, value, valid) {
-    var result;
+  processNode = function (key, value, valid) {
+    result;
     switch (valid) {
       case 'string':
         result = (typeof value === "string") ? true : false;
@@ -57,9 +60,9 @@ var validation = function (data, model, cb) {
         result = (regEx.hasOwnProperty(valid)) ? regEx[valid].test(value) : false;
     }
     return result;
-  }
+  };
 
-  function traverseNodes(obj, model, fn) {
+  traverseNodes = function (obj, model, fn) {
     for (var i in obj) {
       if (model.hasOwnProperty(i)) {
         if (obj[i] !== null && typeof(obj[i])==='object' && Object.prototype.toString.call( obj[i] ) !== '[object Array]') {
@@ -73,7 +76,7 @@ var validation = function (data, model, cb) {
         failures.push(i);
       }
     }
-  }
+  };
 
   traverseNodes(data, model, processNode);
   if (failures.length) {
