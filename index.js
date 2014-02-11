@@ -8,10 +8,10 @@ var multipart = require('connect-multiparty');
 var multiparty = multipart();
 var config = require('./config.js');
 var modules = require('./lib/modules.js');
-var api = require('./lib/api.js');
-var web = require('./lib/web.js');
-var cors = require('./lib/cors.js');
 var middleware = config.middleware;
+
+// Load libs
+modules.load('lib');
 
 // Load adapters
 modules.load('components');
@@ -26,18 +26,20 @@ modules.load('models');
 modules.load('api');
 
 // Initialize custom middleware
-stdout('title','LOADING MIDDLEWARE');
-for (var i=0, z=middleware.length; i<z; i++) {
-  if (modules.components.hasOwnProperty(middleware[i])) {
-    app.use(modules.components[middleware[i]]);
-    stdout('output', 'MIDDLEWARE Applied: ' + middleware[i]);
-  } else {
-    stdout('error', 'ADAPTER Missing: ' + middleware[i]);
+if (middleware.length) {
+  stdout('title','LOADING MIDDLEWARE');
+  for (var i=0, z=middleware.length; i<z; i++) {
+    if (modules.components.hasOwnProperty(middleware[i])) {
+      app.use(modules.components[middleware[i]]);
+      stdout('output', 'MIDDLEWARE Applied: ' + middleware[i]);
+    } else {
+      stdout('error', 'ADAPTER Missing: ' + middleware[i]);
+    }
   }
 }
 
 // Set CORS policies
-app.use(cors);
+app.use(modules.lib.cors);
 
 // Basic express config
 app.enable('strict routing');
@@ -47,10 +49,10 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 // Process API calls
-app.all('/api/:endpoint*', multiparty, api.process);
+app.all('/api/:endpoint*', multiparty, modules.lib.api.process);
 
 // Serve static assets
-app.get('/*', web.serve);
+app.get('/*', modules.lib.web.serve);
 
 // Startup
 app.listen(config.env.port);

@@ -92,6 +92,7 @@
   "globals": {
     "require": true,
     "define": true,
-    "module": true
+    "module": true,
+    "__dirname": true
   }
 }
