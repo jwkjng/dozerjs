@@ -20,6 +20,7 @@ var validation = function (data, model, cb) {
   var result;
   var traverseNodes;
 
+  // Define common regular expressions
   regEx = {
     alphanum: /^[a-zA-Z0-9]+$/,
     email: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
@@ -29,6 +30,7 @@ var validation = function (data, model, cb) {
     ssn: /^([0-9]{3}[-]*[0-9]{2}[-]*[0-9]{4})+$/
   };
 
+  // Tests for valid JSON
   validJSON = function (value) {
     try {
       JSON.parse(value);
@@ -38,8 +40,8 @@ var validation = function (data, model, cb) {
     return true;
   };
 
-  processNode = function (key, value, valid) {
-    result;
+  // Tests, or calls test, on node
+  processNode = function (value, valid) {
     switch (valid) {
       case 'string':
         result = (typeof value === "string") ? true : false;
@@ -62,23 +64,31 @@ var validation = function (data, model, cb) {
     return result;
   };
 
+  // Recursively traverses nodes in the data and model objects
   traverseNodes = function (obj, model, fn) {
     for (var i in obj) {
       if (model.hasOwnProperty(i)) {
+        // If node is an object resulre
         if (obj[i] !== null && typeof(obj[i])==='object' && Object.prototype.toString.call( obj[i] ) !== '[object Array]') {
           traverseNodes(obj[i],model[i],fn);
         } else {
-          if(!fn(i,obj[i],model[i])) {
+          // Process node
+          if (!fn(obj[i],model[i])) {
+            // On failure, result gets added to array of failures
             failures.push(i);
           }
         }
       } else {
+        // Node does not exist in model
         failures.push(i);
       }
     }
   };
 
+  // Call function to travers
   traverseNodes(data, model, processNode);
+
+  // Check for failures, fire callback
   if (failures.length) {
     cb(true, failures);
   } else {
