@@ -10,6 +10,7 @@ var config = require('./config.js');
 var modules = require('./lib/modules.js');
 var api = require('./lib/api.js');
 var web = require('./lib/web.js');
+var cors = require('./lib/cors.js');
 var middleware = config.middleware;
 
 // Load adapters
@@ -34,6 +35,9 @@ for (var i=0, z=middleware.length; i<z; i++) {
     stdout('error', 'ADAPTER Missing: ' + middleware[i]);
   }
 }
+
+// Set CORS policies
+app.use(cors);
 
 // Basic express config
 app.enable('strict routing');

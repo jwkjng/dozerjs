@@ -22,10 +22,15 @@ var config = {
 
   },
 
-  // Custom express middleware
-  middleware: [
-    'cors'
-  ],
+  // CORS configuration
+  cors: {
+    origin: '*',
+    methods: 'GET,PUT,POST,DELETE',
+    headers: 'Content-Type'
+  },
+
+  // Custom express middleware components
+  middleware: [],
 
   // Define common regular expressions for validation
   regEx: {
