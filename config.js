@@ -9,6 +9,12 @@ var config = {
     port: 8181
   },
 
+  // Session secret
+  secret: '6de5661ab3c401bcb266dff913',
+
+  // Express logging
+  expressLogging: 'short',
+
   // Database store configuration
   db: {
 

@@ -43,6 +43,9 @@ app.use(modules.lib.cors);
 
 // Basic express config
 app.enable('strict routing');
+app.use(express.logger(config.expressLogging));
+app.use(express.cookieParser());
+app.use(express.session({ secret: config.secret }));
 app.use(app.router);
 app.use(slash());
 app.use(express.json());
