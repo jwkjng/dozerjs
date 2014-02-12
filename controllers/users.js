@@ -1,7 +1,7 @@
 // Simple example of a "users" controller
 module.exports = {
 
-  // Define data tables/stores to access
+  // Define data tables/stores (and models) to access
   data: [ 'users' ],
 
   getUser: function (req, res, data) {
