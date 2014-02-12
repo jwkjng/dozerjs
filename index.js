@@ -57,7 +57,7 @@ app.use(express.urlencoded());
 modules.lib.controllers();
 
 // Process API calls
-app.all('/api/:endpoint*', multiparty, modules.lib.api.process);
+app.all('/api/:endpoint/*', multiparty, modules.lib.api.process);
 
 // Serve static assets
 app.get('/*', modules.lib.web.serve);

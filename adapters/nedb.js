@@ -1,5 +1,4 @@
 var Datastore = require('nedb');
-var store;
 /**
  * DozerJS NeDB component
  * @constructor db
@@ -14,31 +13,27 @@ var nedb = function (table, config) {
 };
 
 nedb.prototype.count = function (field, query, cb) {
-  this.store.count({ field: query }, cb);
+  this.store.count(query, cb);
 };
 
 nedb.prototype.all = function (cb) {
   this.store.find({}, cb);
 };
 
-nedb.prototype.find = function (field, query, limit, cb) {
-  this.store.find({ field: query }).limit(limit).exec(cb);
-};
-
-nedb.prototype.findOne = function (field, query, cb) {
-  this.find(field, query, 1, cb);
+nedb.prototype.find = function (query, cb) {
+  this.store.find(query, cb);
 };
 
 nedb.prototype.insert = function (data, cb) {
   this.store.insert(data, cb);
 };
 
-nedb.prototype.update = function (field, query, data, cb) {
-  this.store.update({ field: query }, data, cb);
+nedb.prototype.update = function (query, data, cb) {
+  this.store.update(query, data, cb);
 };
 
-nedb.prototype.remove = function (field, query, cb) {
-  this.store.remove({ field: query }, cb);
+nedb.prototype.remove = function (query, cb) {
+  this.store.remove(query, cb);
 };
 
 
