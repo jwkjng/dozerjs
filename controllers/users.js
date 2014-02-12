@@ -1,6 +1,11 @@
 // Simple example of a "users" controller
 var users = {
 
+  // Any initialization/startup stuff...
+  init: function () {
+    console.log('I AM ALIVE');
+  },
+
   // Define data tables/stores (and models) to access
   data: [ 'users' ],
 
