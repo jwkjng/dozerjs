@@ -51,6 +51,9 @@ app.use(slash());
 app.use(express.json());
 app.use(express.urlencoded());
 
+// Initialize controllers
+modules.lib.controllers();
+
 // Process API calls
 app.all('/api/:endpoint*', multiparty, modules.lib.api.process);
 

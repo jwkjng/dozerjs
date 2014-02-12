@@ -1,10 +1,10 @@
 // Simple example of a "users" controller
-module.exports = {
+var users = {
 
   // Define data tables/stores (and models) to access
   data: [ 'users' ],
 
-  getUser: function (req, res, data) {
+  getUser: function (req, res) {
 
     // Example data
     var exData = {
@@ -15,7 +15,7 @@ module.exports = {
     };
 
     // Example of validation against model
-    data.users.validate(exData, function (err, failures) {
+    users.data.users.validate(exData, function (err, failures) {
       if (err) {
         res.send({ "Validation": "Errors: " + failures.join() });
       } else {
@@ -37,3 +37,5 @@ module.exports = {
     res.send({ "DELETE": "User" });
   }
 };
+
+module.exports = users;
