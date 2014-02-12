@@ -11,6 +11,8 @@ module.exports = {
 
   getUser: function (req, res) {
 
+    console.log(this.data.users);
+
     // Example data
     var exData = {
       '_id': '1u2j38dj36s',
