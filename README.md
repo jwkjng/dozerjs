@@ -59,3 +59,57 @@ Dozer builds a server solution for developing front-end applications which inter
 with API's, sockets and whatever else is provided by the server. On startup Dozer
 builds a static server instance through the `public` directory which serves all
 assets used by the application.
+
+---
+
+# Getting Started
+
+To get the foundation up and running simply pull it local then run `npm install`
+to install the dependencies.
+
+Dozer is configured to run out of the box on any setup, so you can run it via
+`node index.js` in the root which will start the service.
+
+### Static Web (View)
+
+The default port is `8181` so navigating to `http://yourserver.com:8181` will load
+the static `index.html` from the `/public/src` directory.
+
+### API
+
+The default build comes with a complete set of `/api/users` endpoints which are
+fully functional and are stored in an NeDB instance. The breakdown of files is:
+
+* `/models/users.js` - The model and data representation
+* `/api/users.js` - The API object associating HTTP verbs to the controller
+* `/controllers/users.js` - The controller that handles API requests
+
+The `model` and `api` files are both fairly simple, setting up the configuration
+which Dozer uses to accurately respond to requests and interact with the controller.
+
+The `controller` file has a number of methods which correspond to the verbs in the
+`api` file.
+
+**API Examples:**
+
+`GET`:`http://yourserver.com:8181/api/users/`
+
+Returns all the users in the data store or empty array
+
+`GET`:`http://yourserver.com:8181/api/users/{ID}`
+
+Returns a specific user based on the `{ID}` or empty array
+
+`POST`:`http://youserver.com:8181/api/user/`
+
+When requested with payload of key-values matching the model will create a new
+user record
+
+`PUT`:`http://yourserver.com:8181/api/users/{ID}`
+
+When requested with payload of key-values matching the model will update a user
+record with matching `{ID}`
+
+`DELETE`:`http://yourserver.com:8181/api/users/{ID}`
+
+Will delete the user record with matching `{ID}`

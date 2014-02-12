@@ -9,6 +9,7 @@ module.exports = {
   // Define data tables/stores (and models) to access
   data: [ 'users' ],
 
+  // Called by api/users "GET"
   getUser: function (req, res) {
     var self = this;
     if (req.params[0]) {
@@ -24,6 +25,7 @@ module.exports = {
     }
   },
 
+  // Called by api/users "POST"
   createUser: function (req, res) {
     var self = this;
     self.data.users.validate(req.body, function (err, failures) {
@@ -37,6 +39,7 @@ module.exports = {
     });
   },
 
+  // Called by api/users "PUT"
   updateUser: function (req, res) {
     var self = this;
     self.data.users.validate(req.body, function (err, failures) {
@@ -50,6 +53,7 @@ module.exports = {
     });
   },
 
+  // Called by api/users "DELETE"
   deleteUser: function (req, res) {
     var self = this;
     self.data.users.remove({ '_id': req.params[0] }, function (err, data) {
@@ -57,10 +61,12 @@ module.exports = {
     });
   },
 
+  // Sends out validation errors
   sendValidationErr: function (res, failures) {
     res.send(400, { 'status': 'error', 'message': 'Failed validation on ' + failures.join() });
   },
 
+  // Sends response to data query
   sendResponse: function (res, err, data) {
     if (err) {
       res.send(400, { 'status': 'error', 'message': err });
