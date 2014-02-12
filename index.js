@@ -13,6 +13,9 @@ var middleware = config.middleware;
 modules.load('lib');
 
 // Load adapters
+modules.load('adapters');
+
+// Load components
 modules.load('components');
 
 // Load controllers
