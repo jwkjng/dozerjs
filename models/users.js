@@ -1,9 +1,9 @@
 // Example "users" model
 module.exports = {
-  '_id': 'uid',
+  '_id': 'string',
   'username': 'string',
   'email': 'email',
-  'password': 'password',
+  'password': 'string',
   'active': 'boolean',
   'tags': 'array',
   'posts': 'number',

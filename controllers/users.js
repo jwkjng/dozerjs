@@ -5,8 +5,24 @@ module.exports = {
   data: [ 'users' ],
 
   getUser: function (req, res, data) {
-    console.log(data);
-    res.send({ "GET": "User" });
+
+    // Example data
+    var exData = {
+      '_id': '1u2j38dj36s',
+      'username': 'testuser',
+      'email': 'test@email.com',
+      'password': '1jj1j2h77dhvdg2'
+    };
+
+    // Example of validation against model
+    data.users.validate(exData, function (err, failures) {
+      if (err) {
+        res.send({ "Validation": "Errors: " + failures.join() });
+      } else {
+        res.send({ "Validation": "Passed" });
+      }
+    });
+
   },
 
   createUser: function (req, res) {
