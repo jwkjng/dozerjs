@@ -1,5 +1,5 @@
 // Simple example of a "users" controller
-var users = {
+module.exports = {
 
   // Any initialization/startup stuff...
   init: function () {
@@ -20,7 +20,7 @@ var users = {
     };
 
     // Example of validation against model
-    users.data.users.validate(exData, function (err, failures) {
+    this.data.users.validate(exData, function (err, failures) {
       if (err) {
         res.send({ "Validation": "Errors: " + failures.join() });
       } else {
@@ -42,5 +42,3 @@ var users = {
     res.send({ "DELETE": "User" });
   }
 };
-
-module.exports = users;
