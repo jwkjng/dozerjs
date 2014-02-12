@@ -33,7 +33,21 @@ module.exports = {
   },
 
   createUser: function (req, res) {
-    res.send({ "POST": "User" });
+    var self = this;
+    self.data.users.validate(req.body, function (err, failures) {
+      if (err) {
+        res.send({ 'status': 'error', 'message': 'failed validation on ' + failures.join });
+      } else {
+        self.data.users.insert(req.body, function (err, data) {
+          if (err) {
+            res.send({ 'status': 'error', 'message': err });
+          } else {
+            res.send({ 'status': 'success', 'message': data });
+          }
+        });
+      }
+    });
+    //res.send({ "POST": "User" });
   },
 
   updateUser: function (req, res) {

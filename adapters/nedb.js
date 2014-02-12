@@ -30,15 +30,15 @@ nedb.prototype.findOne = function (field, query, cb) {
 };
 
 nedb.prototype.insert = function (data, cb) {
-  store.insert(data, cb);
+  this.store.insert(data, cb);
 };
 
 nedb.prototype.update = function (field, query, data, cb) {
-  store.update({ field: query }, data, cb);
+  this.store.update({ field: query }, data, cb);
 };
 
 nedb.prototype.remove = function (field, query, cb) {
-  store.remove({ field: query }, cb);
+  this.store.remove({ field: query }, cb);
 };
 
 
