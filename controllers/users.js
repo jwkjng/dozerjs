@@ -3,7 +3,7 @@ module.exports = {
 
   // Any initialization/startup stuff...
   init: function () {
-    console.log('I AM ALIVE');
+    // Stuff... (sockets and such)
   },
 
   // Define data tables/stores (and models) to access
