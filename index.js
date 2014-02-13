@@ -89,3 +89,7 @@ io.listen(server);
 app.listen(config.env.port);
 modules.lib.stdout('title', 'SERVER RUNNING');
 modules.lib.stdout('output', 'PORT: '+config.env.port);
+
+// Start a new console section for log output
+
+modules.lib.stdout('title', 'LOGGING OUTPUT');
