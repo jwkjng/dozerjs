@@ -1,7 +1,9 @@
 // This file kicks things off
 // It initializes the api and web controllers and starts the static web service
 var express = require('express');
+var io = require('socket.io');
 var app = express();
+var server = require('http').createServer(app);
 var slash = require('express-slash');
 var multipart = require('connect-multiparty');
 var multiparty = multipart();
@@ -62,7 +64,11 @@ app.all('/api/:endpoint/*', multiparty, modules.lib.api.process);
 // Serve static assets
 app.get('/*', modules.lib.web.serve);
 
-// Startup
+// Listen on sockets
+modules.lib.stdout('title', 'STARTING SOCKETS');
+io.listen(server);
+
+// Listen on app
 app.listen(config.env.port);
 modules.lib.stdout('title', 'SERVER RUNNING');
 modules.lib.stdout('output', 'PORT: '+config.env.port);
