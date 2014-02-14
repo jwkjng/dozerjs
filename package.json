@@ -1,10 +1,10 @@
 {
   "name": "DozeJS",
   "version": "0.0.1",
-  "description": "Foundation for Front-End Applications with RESTful Data Layer",
+  "description": "Foundational Framework for NodeJS Web Services",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Fluidbyte/dozejs.git"
+    "url": "https://github.com/DozerJS/dozerjs.git"
   },
   "dependencies": {
     "express": "~3.4.8",
