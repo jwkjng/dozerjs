@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Dozerjs by DozerJS</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Dozerjs</h1>
+        <h2>Foundational Framework for NodeJS Web Services</h2>
+        <a href="https://github.com/DozerJS/dozerjs" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="dozerjs" class="anchor" href="#dozerjs"><span class="octicon octicon-link"></span></a>DozerJS</h1>
+
+<p><img align="right" src="logo.png"></p>
+
+<p>Dozer is a system for rapidly developing services to support front-end applications.</p>
+
+<p>It's not a framework, not a toolkit, rather Dozer aims to be a maleable and
+unopinionated foundation for developing RESTful API's and web services to support
+front-end development.</p>
+
+<p>Dozer creates a core server environment using <a href="http://www.nodejs.org">NodeJS</a> and
+the <a href="http://expressjs.com">Express framework</a> then allows you to build api endpoints,
+database models, components and adapters which all work together to provide the
+services required on the front-end.</p>
+
+<h2>
+<a name="core" class="anchor" href="#core"><span class="octicon octicon-link"></span></a>Core</h2>
+
+<p>The core of Dozer is the <a href="http://expressjs.com/">Express</a> setup which sets a
+number of common configuration properties, handles RESTful API endpoints and
+serves static files. It then reads in the application configuration, loads any
+adapters, components &amp; controllers, and chains everything together.</p>
+
+<h2>
+<a name="components" class="anchor" href="#components"><span class="octicon octicon-link"></span></a>Components</h2>
+
+<p>Components are simply modules which are loaded and available throughout the application.
+The can be database modules, express middleware or anything else required by the
+application or any of the controllers.</p>
+
+<h2>
+<a name="adapters" class="anchor" href="#adapters"><span class="octicon octicon-link"></span></a>Adapters</h2>
+
+<p>Similar to components adapters are modules which connect internally. Specifically
+things like database adapters, sockets, etc.</p>
+
+<h2>
+<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h2>
+
+<p>The API files establish the RESTful endpoints to which your server will respond.
+They are objects where the top-level methods correspond with the HTTP verbs that
+the endpoint will support (<code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>, etc).</p>
+
+<h2>
+<a name="controllers" class="anchor" href="#controllers"><span class="octicon octicon-link"></span></a>Controllers</h2>
+
+<p>The controllers are the engine for the server. Everything ultimately ends up in
+a controller to be processed. This includes database interactions, sockets,
+custom adapter usage, remote API procedures, etc. Controllers can be initialized
+up front to provide services throughout or can be built to simply cater to the
+needs of the API.</p>
+
+<h2>
+<a name="models" class="anchor" href="#models"><span class="octicon octicon-link"></span></a>Models</h2>
+
+<p>Models represent the data. Each store/table in the database should have a model
+associated with it. The models outline the structure and content-types of the
+data. Models can be automatically validated in the controller with a number of
+supported data-types, all of which are customizeable and easily maintained in the
+core configuration.</p>
+
+<h2>
+<a name="viewpublic" class="anchor" href="#viewpublic"><span class="octicon octicon-link"></span></a>View/Public</h2>
+
+<p>Dozer builds a server solution for developing front-end applications which interact
+with API's, sockets and whatever else is provided by the server. On startup Dozer
+builds a static server instance through the <code>public</code> directory which serves all
+assets used by the application.</p>
+
+<hr><h1>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h1>
+
+<p><strong>Quick Start</strong></p>
+
+<p>DozerJS has an <a href="https://www.npmjs.org/package/dozerjs">npm available</a> to make
+creating new instances simple. To get started install the npm globally:</p>
+
+<p><code>npm install dozerjs -g</code></p>
+
+<p>Then simply run the <code>dozerjs</code> npm via the following:</p>
+
+<p><code>dozerjs create NewProject</code></p>
+
+<p>Which will create the project with all neccesary assets and dependencies in the
+directory <code>./NewProject</code>.</p>
+
+<hr><p><strong>Manual Installation</strong></p>
+
+<p>To get the foundation up and running simply clone it locally then run <code>npm install</code>
+to install the dependencies.</p>
+
+<hr><p>Dozer is configured to run out of the box on any setup, so you can run it via
+<code>node index.js</code> in the root which will start the service.</p>
+
+<h3>
+<a name="static-web-view" class="anchor" href="#static-web-view"><span class="octicon octicon-link"></span></a>Static Web (View)</h3>
+
+<p>The default port is <code>8181</code> so navigating to <code>http://yourserver.com:8181</code> will load
+the static <code>index.html</code> from the <code>/public/src</code> directory.</p>
+
+<h3>
+<a name="api-1" class="anchor" href="#api-1"><span class="octicon octicon-link"></span></a>API</h3>
+
+<p>The default build comes with a complete set of <code>/api/users</code> endpoints which are
+fully functional and are stored in an NeDB instance. The breakdown of files is:</p>
+
+<ul>
+<li>
+<code>/models/users.js</code> - The model and data representation</li>
+<li>
+<code>/api/users.js</code> - The API object associating HTTP verbs to the controller</li>
+<li>
+<code>/controllers/users.js</code> - The controller that handles API requests</li>
+</ul><p>The <code>model</code> and <code>api</code> files are both fairly simple, setting up the configuration
+which Dozer uses to accurately respond to requests and interact with the controller.</p>
+
+<p>The <code>controller</code> file has a number of methods which correspond to the verbs in the
+<code>api</code> file.</p>
+
+<p><strong>API Examples:</strong></p>
+
+<p><code>GET</code>:<code>http://yourserver.com:8181/api/users/</code></p>
+
+<p>Returns all the users in the data store or empty array</p>
+
+<p><code>GET</code>:<code>http://yourserver.com:8181/api/users/{ID}</code></p>
+
+<p>Returns a specific user based on the <code>{ID}</code> or empty array</p>
+
+<p><code>POST</code>:<code>http://youserver.com:8181/api/user/</code></p>
+
+<p>When requested with payload of key-values matching the model will create a new
+user record</p>
+
+<p><code>PUT</code>:<code>http://yourserver.com:8181/api/users/{ID}</code></p>
+
+<p>When requested with payload of key-values matching the model will update a user
+record with matching <code>{ID}</code></p>
+
+<p><code>DELETE</code>:<code>http://yourserver.com:8181/api/users/{ID}</code></p>
+
+<p>Will delete the user record with matching <code>{ID}</code></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/DozerJS/dozerjs/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/DozerJS/dozerjs/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/DozerJS/dozerjs"></a> is maintained by <a href="https://github.com/DozerJS">DozerJS</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-48090529-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
