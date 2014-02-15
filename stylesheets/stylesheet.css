@@ -84,7 +84,7 @@ header {
 header .dozer-logo-header {
   display: block;
   float: left;
-  margin: -10px 25px 25px 0;
+  margin: -10px 25px 25px -45px;
   max-width: 175px;
 }
 
@@ -384,12 +384,17 @@ footer a:hover {
 @media only screen and (max-width: 959px) {}
 
 /* Tablet Portrait size to standard 960 (devices and browsers) */
-@media only screen and (min-width: 768px) and (max-width: 959px) {
+@media only screen and (min-width: 768px) and (max-width: 1070px) {
+
+  header .dozer-logo-header {
+    margin-left: 0;
+  }
+
   .inner {
     width: 740px;
   }
   header h1, header h2 {
-    width: 340px;
+
   }
   header h1 {
     font-size: 60px;
@@ -414,6 +419,11 @@ footer a:hover {
 
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: 767px) {
+
+  header .dozer-logo-header {
+    margin-left: 0;
+  }
+
   .inner {
     width: 93%;
   }
@@ -484,4 +494,8 @@ footer a:hover {
 @media only screen and (min-width: 480px) and (max-width: 767px) {}
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
-@media only screen and (max-width: 479px) {}
+@media only screen and (max-width: 479px) {
+  header .dozer-logo-header {
+    display: none;
+  }
+}
