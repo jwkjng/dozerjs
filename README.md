@@ -64,8 +64,28 @@ assets used by the application.
 
 # Getting Started
 
-To get the foundation up and running simply pull it local then run `npm install`
+**Quick Start**
+
+DozerJS has an [npm available](https://www.npmjs.org/package/dozerjs) to make
+creating new instances simple. To get started install the npm globally:
+
+`npm install dozerjs -g`
+
+Then simply run the `dozerjs` npm via the following:
+
+`dozerjs create NewProject`
+
+Which will create the project with all neccesary assets and dependencies in the
+directory `./NewProject`.
+
+---
+
+**Manual Installation**
+
+To get the foundation up and running simply clone it locally then run `npm install`
 to install the dependencies.
+
+---
 
 Dozer is configured to run out of the box on any setup, so you can run it via
 `node index.js` in the root which will start the service.
