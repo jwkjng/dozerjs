@@ -9,6 +9,9 @@ module.exports = {
   // Define data tables/stores (and models) to access
   data: [ 'users' ],
 
+  // Define any socket namespaces to use (no slash required)
+  sockets: [ 'users' ],
+
   // Called by api/users "GET"
   getUser: function (req, res) {
     var self = this;
