@@ -10,9 +10,17 @@ var slash = require('express-slash');
 var multipart = require('connect-multiparty');
 var multiparty = multipart();
 var config = require('./config.js');
+var prodConfig = require('./prod.config.js');
+var merge = require('./lib/merge.js');
 var modules = require('./lib/modules.js');
 var middleware = config.middleware;
 var load = [ 'lib', 'adapters', 'components', 'controllers', 'models', 'api'];
+
+// Determine environment and override config using the merge
+// module to prioritize prod over default
+if (process.env.NODE_ENV === 'production') {
+  config = merge(config, prodConfig);
+}
 
 // Load all the modules
 // All of the modules are then accessible via /lib/modules.js, for example:
