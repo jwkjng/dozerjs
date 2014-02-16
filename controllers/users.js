@@ -3,10 +3,6 @@ module.exports = {
 
   // Any initialization/startup stuff...
   init: function () {
-    // Example of sockets
-    this.sockets.users.on('test', function (socket) {
-      socket.emit('It works!');
-    });
   },
 
   // Define data tables/stores (and models) to access

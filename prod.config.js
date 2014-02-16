@@ -6,6 +6,8 @@ var config = {
     // Public root
     publicHTTP: 'public/dist',
     // Port to run over
-    port: 80
+    port: 8282
   }
 };
+
+module.exports = config;
