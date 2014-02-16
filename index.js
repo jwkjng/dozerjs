@@ -34,6 +34,23 @@ for (var i=0, z=load.length; i<z; i++){
   modules.load(load[i]);
 }
 
+// Set CORS policies
+// Pulls settings from /config.js
+
+app.use(modules.lib.cors);
+
+// Basic express config
+
+app.enable('strict routing');
+app.use(express.logger(config.expressLogging));
+app.use(express.cookieParser());
+app.use(express.cookieParser());
+app.use(express.cookieSession({ secret: config.secret, cookie: { maxAge: 60 * 60 * 1000 }}));
+app.use(app.router);
+app.use(slash());
+app.use(express.json());
+app.use(express.urlencoded());
+
 // Initialize custom middleware
 // These can be set in the /config.js file 'middleware' property by assigning
 // the corresponding /components/{name}.js, {name} as an array member
@@ -51,22 +68,6 @@ if (middleware.length) {
     }
   }
 }
-
-// Set CORS policies
-// Pulls settings from /config.js
-
-app.use(modules.lib.cors);
-
-// Basic express config
-
-app.enable('strict routing');
-app.use(express.logger(config.expressLogging));
-app.use(express.cookieParser());
-app.use(express.session({ secret: config.secret }));
-app.use(app.router);
-app.use(slash());
-app.use(express.json());
-app.use(express.urlencoded());
 
 // Initialize controllers
 // Loads up each of the controllers, binds them to their specified data sources
