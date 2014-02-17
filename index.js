@@ -4,6 +4,7 @@
 
 var express = require('express');
 var io = require('socket.io');
+var sockets;
 var app = express();
 var server = require('http').createServer(app);
 var slash = require('express-slash');
@@ -84,7 +85,7 @@ app.get('/*', modules.lib.web.serve);
 // Simply starts Socket.io over the server
 
 modules.lib.stdout('title', 'STARTING SOCKETS');
-var sockets = io.listen(server);
+sockets = io.listen(server);
 modules.lib.socketio.setIO(sockets);
 
 // Initialize controllers
