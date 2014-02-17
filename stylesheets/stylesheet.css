@@ -141,6 +141,10 @@ aside#sidebar p.repo-owner a {
   font-weight: bold;
 }
 
+aside#sidebar p.theme-note {
+  opacity: 0.5;
+}
+
 #downloads {
   margin-bottom: 40px;
 }
@@ -154,6 +158,7 @@ a.button {
   padding-left: 68px;
   padding-top: 22px;
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+  transition: .3s text-shadow;
 }
 a.button small {
   display: block;
@@ -172,6 +177,10 @@ aside a.button {
   background: transparent url(../images/download-button.png) 0 0 no-repeat;
   margin-bottom: 20px;
   font-size: 21px;
+}
+
+a.button:hover {
+  text-shadow: 1px 1px 2px #25007A;
 }
 
 code, pre {
@@ -453,8 +462,8 @@ footer a:hover {
     text-align: center;
     font-size: 13px;
     line-height: 1;
-    background-color: #9ddcff;
-    color: #2879d0;
+    background-color: #2E6381;
+    color: #fff;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
