@@ -4,6 +4,8 @@
 
   <body>
 
+    <pre>Open your console...</pre>
+
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -13,7 +15,7 @@
       });
 
       users.on('test', function (data) {
-        console.log('REceieved: '+ data);
+        console.log('Receieved: '+ JSON.stringify(data));
       });
     </script>
 

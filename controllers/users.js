@@ -3,8 +3,8 @@ module.exports = {
 
   // Any initialization/startup stuff...
   init: function () {
+    // On connect, just send a test payload
     this.sockets.users.on('connection', function(socket) {
-      console.log('CONNECTION!');
       socket.emit('test', { data: 'This is a test' });
     });
   },
