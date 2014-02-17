@@ -143,6 +143,10 @@ aside#sidebar p.repo-owner a {
   opacity: 0.7;
 }
 
+aside#sidebar p.repo-owner a:hover {
+  color: #1b3873;
+}
+
 aside#sidebar p.theme-note {
   opacity: 0.5;
 }
