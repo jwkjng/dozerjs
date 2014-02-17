@@ -23,6 +23,7 @@ var config = {
 
     // Adapter specific configuration
     config: {
+      // Will store data in /data
       store: 'data'
     }
 
