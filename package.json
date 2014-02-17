@@ -1,6 +1,6 @@
 {
   "name": "DozerJS",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Foundational Framework for NodeJS Web Services",
   "repository": {
     "type": "git",
