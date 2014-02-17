@@ -31,6 +31,9 @@ Then simply run the `dozerjs` npm via the following:
 Which will create the project with all neccesary assets and dependencies in the
 directory `./NewProject`.
 
+For additional information on using the command client please visit the
+[npm page](https://www.npmjs.org/package/dozerjs).
+
 ---
 
 **Manual Installation**
