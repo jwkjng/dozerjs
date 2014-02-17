@@ -7,7 +7,7 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      var users = io.connect('/users');
+      var users = io.connect('/users/');
       users.on('connect', function () {
         users.emit('hi!');
       });
