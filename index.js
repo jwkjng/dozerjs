@@ -69,12 +69,6 @@ if (middleware.length) {
   }
 }
 
-// Initialize controllers
-// Loads up each of the controllers, binds them to their specified data sources
-// and runs any initialization methods
-
-modules.lib.controllers();
-
 // Process API calls
 // Calls the appropriate /api/{file}.js on HTTP req, ensures that controller is
 // in place and properly specified and calls appropriate controller method
@@ -90,12 +84,19 @@ app.get('/*', modules.lib.web.serve);
 // Simply starts Socket.io over the server
 
 modules.lib.stdout('title', 'STARTING SOCKETS');
-io.listen(server);
+var sockets = io.listen(server);
+modules.lib.socketio.setIO(sockets);
+
+// Initialize controllers
+// Loads up each of the controllers, binds them to their specified data sources
+// and runs any initialization methods
+
+modules.lib.controllers();
 
 // Listen on app
 // Starts the app service over config'd port
 
-app.listen(config.env.port);
+server.listen(config.env.port);
 modules.lib.stdout('title', 'SERVER RUNNING');
 modules.lib.stdout('output', 'PORT: '+config.env.port);
 

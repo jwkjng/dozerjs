@@ -1,0 +1,22 @@
+<html>
+
+  <head></head>
+
+  <body>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var users = io.connect('/users');
+      users.on('connect', function () {
+        users.emit('hi!');
+      });
+
+      users.on('test', function (data) {
+        console.log('REceieved: '+ data);
+      });
+    </script>
+
+  </body>
+
+</html>
