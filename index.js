@@ -15,7 +15,10 @@ var configProd = require('./config.prod.js');
 var merge = require('./lib/merge.js');
 var modules = require('./lib/modules.js');
 var middleware = config.middleware;
+var settings = config.expressConfig || [];
 var load = [ 'lib', 'adapters', 'components', 'controllers', 'models', 'api'];
+
+var value, i, z;
 
 // Determine environment and override config using the merge
 // module to prioritize prod over default
@@ -31,7 +34,7 @@ if (process.env.NODE_ENV === 'production') {
 //   ---
 // Would give you access to the nedb adapter
 
-for (var i=0, z=load.length; i<z; i++){
+for (i=0, z=load.length; i<z; i++){
   modules.load(load[i]);
 }
 
@@ -52,13 +55,29 @@ app.use(slash());
 app.use(express.json());
 app.use(express.urlencoded());
 
+// Serve static assets
+app.use(express.static(config.env.publicHTTP || __dirname + 'public/src'));
+
+// Set custom Express config
+if (settings.length) {
+  modules.lib.stdout('title','LOADING EXPRESS SETTINGS');
+
+  for (i=0, z=settings.length; i<z; i++) {
+    if (Array.isArray(settings[i]) && settings[i].length) {
+      value = settings[i][1] || null;
+      app.set(settings[i][0], value);
+      modules.lib.stdout('output', 'EXPRESS SETTING Applied: ' + settings[i][0] + '=' + value);
+    }
+  }
+}
+
 // Initialize custom middleware
 // These can be set in the /config.js file 'middleware' property by assigning
 // the corresponding /components/{name}.js, {name} as an array member
 
 if (middleware.length) {
   modules.lib.stdout('title','LOADING MIDDLEWARE');
-  for (var i=0, z=middleware.length; i<z; i++) {
+  for (i=0, z=middleware.length; i<z; i++) {
     if (modules.components.hasOwnProperty(middleware[i])) {
       // All is good, apply the component
       app.use(modules.components[middleware[i]]);
@@ -75,11 +94,6 @@ if (middleware.length) {
 // in place and properly specified and calls appropriate controller method
 
 app.all('/api/:endpoint/:path?/:id?', multiparty, modules.lib.api.process);
-
-// Serve static assets
-// Bases static directory off /config.js env.publicHTTP property
-
-app.get('/*', modules.lib.web.serve);
 
 // Listen on sockets
 // Simply starts Socket.io over the server

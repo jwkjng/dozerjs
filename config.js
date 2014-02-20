@@ -39,6 +39,8 @@ var config = {
   // Custom express middleware components
   middleware: [],
 
+  expressConfig: [],
+
   // Define common regular expressions for validation
   regEx: {
     float: /^[0-9]*[.][0-9]+$/,
