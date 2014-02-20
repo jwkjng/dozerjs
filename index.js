@@ -52,6 +52,9 @@ app.use(slash());
 app.use(express.json());
 app.use(express.urlencoded());
 
+// Serve static assets
+app.use(express.static(config.env.publicHTTP || __dirname + 'public/src'));
+
 // Initialize custom middleware
 // These can be set in the /config.js file 'middleware' property by assigning
 // the corresponding /components/{name}.js, {name} as an array member
@@ -75,11 +78,6 @@ if (middleware.length) {
 // in place and properly specified and calls appropriate controller method
 
 app.all('/api/:endpoint/*', multiparty, modules.lib.api.process);
-
-// Serve static assets
-// Bases static directory off /config.js env.publicHTTP property
-
-app.get('/*', modules.lib.web.serve);
 
 // Listen on sockets
 // Simply starts Socket.io over the server
