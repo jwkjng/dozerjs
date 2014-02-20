@@ -55,6 +55,9 @@ app.use(slash());
 app.use(express.json());
 app.use(express.urlencoded());
 
+// Serve static assets
+app.use(express.static(config.env.publicHTTP || __dirname + 'public/src'));
+
 // Set custom Express config
 if (settings.length) {
   modules.lib.stdout('title','LOADING EXPRESS SETTINGS');
@@ -91,11 +94,6 @@ if (middleware.length) {
 // in place and properly specified and calls appropriate controller method
 
 app.all('/api/:endpoint/*', multiparty, modules.lib.api.process);
-
-// Serve static assets
-// Bases static directory off /config.js env.publicHTTP property
-
-app.get('/*', modules.lib.web.serve);
 
 // Listen on sockets
 // Simply starts Socket.io over the server
