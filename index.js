@@ -74,7 +74,7 @@ if (middleware.length) {
 // Calls the appropriate /api/{file}.js on HTTP req, ensures that controller is
 // in place and properly specified and calls appropriate controller method
 
-app.all('/api/:endpoint/*', multiparty, modules.lib.api.process);
+app.all('/api/:endpoint/:path?/:id?', multiparty, modules.lib.api.process);
 
 // Serve static assets
 // Bases static directory off /config.js env.publicHTTP property

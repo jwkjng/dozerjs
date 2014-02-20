@@ -2,10 +2,18 @@
 module.exports = {
 
   // Handle GET method
-  'GET': {
-    controller: 'users',
-    fn: 'getUser'
-  },
+  'GET': [
+    {
+        path: 'default',
+        controller: 'users',
+        fn: 'getUser'
+    },
+    {
+        path: 'login',
+        controller: 'users',
+        fn: 'loginUser'
+    }
+  ],
 
   // Handle POST method
   'POST': {

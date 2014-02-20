@@ -15,12 +15,27 @@ module.exports = {
   // Define any socket namespaces to use (no slash required)
   sockets: [ 'users' ],
 
+  loginUser: function (req, res) {
+    var self = this;
+    
+    if (req.params.id) {
+      // Get by id
+      self.data.users.find({ '_id': req.params.id }, function (err, data) {
+        self.sendResponse(res, err, data);
+      });
+    } else {
+      self.sendResponse(res, 'No user id provided');
+    }
+    
+    
+  },
+
   // Called by api/users "GET"
   getUser: function (req, res) {
     var self = this;
-    if (req.params[0]) {
+    if (req.params.id) {
       // Get by id
-      self.data.users.find({ '_id': req.params[0] }, function (err, data) {
+      self.data.users.find({ '_id': req.params.id }, function (err, data) {
         self.sendResponse(res, err, data);
       });
     } else {
@@ -74,6 +89,7 @@ module.exports = {
 
   // Sends response to data query
   sendResponse: function (res, err, data) {
+    console.log('getting here');
     if (err) {
       res.send(400, { 'status': 'error', 'message': err });
     } else {
