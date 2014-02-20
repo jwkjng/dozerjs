@@ -50,10 +50,10 @@ app.use(express.logger(config.expressLogging));
 app.use(express.cookieParser());
 app.use(express.cookieParser());
 app.use(express.cookieSession({ secret: config.secret, cookie: { maxAge: 60 * 60 * 1000 }}));
-app.use(app.router);
-app.use(slash());
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(app.router);
+app.use(slash());
 
 // Serve static assets
 app.use(express.static(config.env.publicHTTP || __dirname + 'public/src'));
