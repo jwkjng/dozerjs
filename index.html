@@ -43,77 +43,23 @@ the <a href="http://expressjs.com">Express framework</a> then allows you to buil
 database models, components and adapters which all work together to provide the
 services required on the front-end.</p>
 
-<h2>
-<a name="core" class="anchor" href="#core"><span class="octicon octicon-link"></span></a>Core</h2>
+<h2>The Concept</h2>
 
-<p>The core of Dozer is the <a href="http://expressjs.com/">Express</a> setup which sets a
-number of common configuration properties, handles RESTful API endpoints and
-serves static files. It then reads in the application configuration, loads any
-adapters, components &amp; controllers, and chains everything together.</p>
+<p>DozerJS consists of core directories which correspond to the part of the MVC
+architecture and the modules which run the system</p>
 
-<p><strong><a target="_blank" href="https://github.com/DozerJS/dozerjs-docs/tree/master/core">Read Documentation &raquo;</a></strong></p>
-
-<h2>
-<a name="components" class="anchor" href="#components"><span class="octicon octicon-link"></span></a>Components</h2>
-
-<p>Components are simply modules which are loaded and available throughout the application.
-The can be database modules, express middleware or anything else required by the
-application or any of the controllers.</p>
-
-<p><strong><a target="_blank" href="https://github.com/DozerJS/dozerjs-docs/tree/master/components">Read Documentation &raquo;</a></strong></p>
-
-<h2>
-<a name="adapters" class="anchor" href="#adapters"><span class="octicon octicon-link"></span></a>Adapters</h2>
-
-<p>Similar to components adapters are modules which connect internally. Specifically
-things like database adapters, sockets, etc.</p>
-
-<p><strong><a target="_blank" href="https://github.com/DozerJS/dozerjs-docs/tree/master/adapters">Read Documentation &raquo;</a></strong></p>
-
-<h2>
-<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h2>
-
-<p>The API files establish the RESTful endpoints to which your server will respond.
-They are objects where the top-level methods correspond with the HTTP verbs that
-the endpoint will support (<code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>, etc).</p>
-
-<p><strong><a target="_blank" href="https://github.com/DozerJS/dozerjs-docs/tree/master/api">Read Documentation &raquo;</a></strong></p>
-
-<h2>
-<a name="controllers" class="anchor" href="#controllers"><span class="octicon octicon-link"></span></a>Controllers</h2>
-
-<p>The controllers are the engine for the server. Everything ultimately ends up in
-a controller to be processed. This includes database interactions, sockets,
-custom adapter usage, remote API procedures, etc. Controllers can be initialized
-up front to provide services throughout or can be built to simply cater to the
-needs of the API.</p>
-
-<p><strong><a target="_blank" href="https://github.com/DozerJS/dozerjs-docs/tree/master/controllers">Read Documentation &raquo;</a></strong></p>
-
-<h2>
-<a name="models" class="anchor" href="#models"><span class="octicon octicon-link"></span></a>Models</h2>
-
-<p>Models represent the data. Each store/table in the database should have a model
-associated with it. The models outline the structure and content-types of the
-data. Models can be automatically validated in the controller with a number of
-supported data-types, all of which are customizeable and easily maintained in the
-core configuration.</p>
-
-<p><strong><a target="_blank" href="https://github.com/DozerJS/dozerjs-docs/tree/master/models">Read Documentation &raquo;</a></strong></p>
-
-<h2>
-<a name="viewpublic" class="anchor" href="#viewpublic"><span class="octicon octicon-link"></span></a>View/Public</h2>
-
-<p>Dozer builds a server solution for developing front-end applications which interact
-with API's, sockets and whatever else is provided by the server. On startup Dozer
-builds a static server instance through the <code>public</code> directory which serves all
-assets used by the application.</p>
-
-<p><strong><a target="_blank" href="https://github.com/DozerJS/dozerjs-docs/tree/master/public">Read Documentation &raquo;</a></strong></p>
+<ul>
+  <li><a target="_blank" href="https://github.com/DozerJS/dozerjs-docs/tree/master/core">Core (lib, index.js, config.js)</a> - The files which initialize and control the framework</li>
+  <li><a target="_blank" href="https://github.com/DozerJS/dozerjs-docs/tree/master/components">Components</a> - modules which extend functionality and are available to all controllers</li>
+  <li><a target="_blank" href="https://github.com/DozerJS/dozerjs-docs/tree/master/adapters">Adapters</a> - Modules which connect the system to other resources (primarily data sources)</li>
+  <li><a target="_blank" href="https://github.com/DozerJS/dozerjs-docs/tree/master/controllers">Controllers</a> - Handle processing of data, requests and actions within the system</li>
+  <li><a target="_blank" href="https://github.com/DozerJS/dozerjs-docs/tree/master/models">Models</a> - Define data structure and validation requirements</li>
+  <li><a target="_blank" href="https://github.com/DozerJS/dozerjs-docs/tree/master/public">View (public)</a> - Serves the client-side application which interacts with the web services</li>
+</ul>
 
 <hr>
 
-<h1>Full Documentation</h1>
+<h1>Documentation</h1>
 
 <p>In order to allow for the documentation to iterate with the project it is maintained
   in a repository. The repository also serves as a place for finding support and
@@ -143,62 +89,28 @@ directory <code>./NewProject</code>.</p>
 
 <p>For more information about using the command tool please <a href="https://www.npmjs.org/package/dozerjs">read the documentation.</a></p>
 
-<hr><p><strong>Manual Installation</strong></p>
+<p>If you directly clone the repository simple run <code>npm install</code> in the
+  root to load dependencies, then <code>node index.js</code> to run the server.
+</p>
 
-<p>To get the foundation up and running simply clone it locally then run <code>npm install</code>
-to install the dependencies.</p>
+<p>The server defaults to port 8181 so when running you can naviagte to your server at
+  port 8181 to view <code>/public/src</code>.
+</p>
 
-<hr><p>Dozer is configured to run out of the box on any setup, so you can run it via
-<code>node index.js</code> in the root which will start the service.</p>
+<h1>
+<a name="api-1" class="anchor" href="#api-1"><span class="octicon octicon-link"></span></a>Extensions</h1>
 
-<h3>
-<a name="static-web-view" class="anchor" href="#static-web-view"><span class="octicon octicon-link"></span></a>Static Web (View)</h3>
+<p>DozerJS is created to support extensions, so if you would like to see a basic RESTful API endpoint and extension
+  in action install the <a target="_blank" href="https://github.com/DozerJS/dz-example-extension">example extension</a>
+  by running:
+</p>
 
-<p>The default port is <code>8181</code> so navigating to <code>http://yourserver.com:8181</code> will load
-the static <code>index.html</code> from the <code>/public/src</code> directory.</p>
+<p><code>dozerjs install https://github.com/DozerJS/dz-example-extension.git</code></p>
 
-<h3>
-<a name="api-1" class="anchor" href="#api-1"><span class="octicon octicon-link"></span></a>API</h3>
+<p>via the command line client inside a DozerJS project folder root. For more information
+  please <a target="_blank" href="https://github.com/DozerJS/dz-example-extension">read the documentation for the extension</a>.
+</p>
 
-<p>The default build comes with a complete set of <code>/api/users</code> endpoints which are
-fully functional and are stored in an NeDB instance. The breakdown of files is:</p>
-
-<ul>
-<li>
-<code>/models/users.js</code> - The model and data representation</li>
-<li>
-<code>/api/users.js</code> - The API object associating HTTP verbs to the controller</li>
-<li>
-<code>/controllers/users.js</code> - The controller that handles API requests</li>
-</ul><p>The <code>model</code> and <code>api</code> files are both fairly simple, setting up the configuration
-which Dozer uses to accurately respond to requests and interact with the controller.</p>
-
-<p>The <code>controller</code> file has a number of methods which correspond to the verbs in the
-<code>api</code> file.</p>
-
-<p><strong>API Examples:</strong></p>
-
-<p><code>GET</code>:<code>http://yourserver.com:8181/api/users/</code></p>
-
-<p>Returns all the users in the data store or empty array</p>
-
-<p><code>GET</code>:<code>http://yourserver.com:8181/api/users/{ID}</code></p>
-
-<p>Returns a specific user based on the <code>{ID}</code> or empty array</p>
-
-<p><code>POST</code>:<code>http://youserver.com:8181/api/user/</code></p>
-
-<p>When requested with payload of key-values matching the model will create a new
-user record</p>
-
-<p><code>PUT</code>:<code>http://yourserver.com:8181/api/users/{ID}</code></p>
-
-<p>When requested with payload of key-values matching the model will update a user
-record with matching <code>{ID}</code></p>
-
-<p><code>DELETE</code>:<code>http://yourserver.com:8181/api/users/{ID}</code></p>
-
-<p>Will delete the user record with matching <code>{ID}</code></p>
         </section>
 
         <aside id="sidebar">
