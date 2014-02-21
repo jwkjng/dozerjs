@@ -48,7 +48,6 @@ app.use(modules.lib.cors);
 app.enable('strict routing');
 app.use(express.logger(config.expressLogging));
 app.use(express.cookieParser());
-app.use(express.cookieParser());
 app.use(express.cookieSession({ secret: config.secret, cookie: { maxAge: 60 * 60 * 1000 }}));
 app.use(express.json());
 app.use(express.urlencoded());
