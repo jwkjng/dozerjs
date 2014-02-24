@@ -4,14 +4,19 @@ module.exports = {
   // Handle GET method
   'GET': [
     {
-        path: 'default',
-        controller: 'users',
-        fn: 'getUser'
+      path: 'index',
+      controller: 'users',
+      fn: 'getUser'
     },
     {
-        path: 'login',
-        controller: 'users',
-        fn: 'loginUser'
+      path: 'login',
+      controller: 'users',
+      fn: 'loginUser'
+    },
+    {
+      path: 'account/:user/billing/edit',
+      controller: 'users',
+      fn: 'editBilling'
     }
   ],
 

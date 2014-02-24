@@ -10,21 +10,13 @@ var server = require('http').createServer(app);
 var slash = require('express-slash');
 var multipart = require('connect-multiparty');
 var multiparty = multipart();
-var config = require('./config.js');
-var configProd = require('./config.prod.js');
-var merge = require('./lib/merge.js');
+var config = require('./lib/config');
 var modules = require('./lib/modules.js');
-var middleware = config.middleware;
-var settings = config.expressConfig || [];
+var middleware = config.get('middleware');
+var settings = config.get('expressConfig') || [];
 var load = [ 'lib', 'adapters', 'components', 'controllers', 'models', 'api'];
 
 var value, i, z;
-
-// Determine environment and override config using the merge
-// module to prioritize prod over default
-if (process.env.NODE_ENV === 'production') {
-  config = merge(config, configProd);
-}
 
 // Load all the modules
 // All of the modules are then accessible via /lib/modules.js, for example:
@@ -46,17 +38,16 @@ app.use(modules.lib.cors);
 // Basic express config
 
 app.enable('strict routing');
-app.use(express.logger(config.expressLogging));
+app.use(express.logger(config.get('expressLogging')));
 app.use(express.cookieParser());
-app.use(express.cookieParser());
-app.use(express.cookieSession({ secret: config.secret, cookie: { maxAge: 60 * 60 * 1000 }}));
-app.use(app.router);
-app.use(slash());
+app.use(express.cookieSession({ secret: config.get('secret'), cookie: { maxAge: 60 * 60 * 1000 }}));
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(app.router);
+app.use(slash());
 
 // Serve static assets
-app.use(express.static(config.env.publicHTTP || __dirname + 'public/src'));
+app.use(express.static(config.get('env.publicHTTP') || __dirname + 'public/src'));
 
 // Set custom Express config
 if (settings.length) {
@@ -93,7 +84,7 @@ if (middleware.length) {
 // Calls the appropriate /api/{file}.js on HTTP req, ensures that controller is
 // in place and properly specified and calls appropriate controller method
 
-app.all('/api/:endpoint/:path?/:id?', multiparty, modules.lib.api.process);
+app.all('/api/:entity/*', multiparty, modules.lib.api.process);
 
 // Listen on sockets
 // Simply starts Socket.io over the server
@@ -111,9 +102,9 @@ modules.lib.controllers();
 // Listen on app
 // Starts the app service over config'd port
 
-server.listen(config.env.port);
+server.listen(config.get('env.port'));
 modules.lib.stdout('title', 'SERVER RUNNING');
-modules.lib.stdout('output', 'PORT: '+config.env.port);
+modules.lib.stdout('output', 'PORT: '+config.get('env.port'));
 
 // Start a new console section for log output
 
