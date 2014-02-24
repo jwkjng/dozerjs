@@ -14,7 +14,7 @@ module.exports = {
   },
 
   loginUser: function (req, res) {
-    res.send("loginUser: "+req.params.id);
+    res.send("loginUser: "+req.params.id+", "+req.params.username);
   },
 
   // Called by api/users "POST"
