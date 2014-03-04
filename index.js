@@ -18,6 +18,7 @@ var koa_static = require('koa-static');
 var config = require('./lib/config');
 var modules = require('./lib/modules.js');
 var middleware = config.get('middleware');
+// var slash = require('koaslash');
 // var settings = config.get('expressConfig') || [];
 var submodules = [ 'lib', 'adapters', 'components', 'controllers', 'models', 'api'];
 
@@ -93,7 +94,7 @@ if (middleware.length) {
 // Calls the appropriate /api/{file}.js on HTTP req, ensures that controller is
 // in place and properly specified and calls appropriate controller method
 
-app.all(/^\/api\/([^\/]+)(\/.+\/?)?$/i, modules.lib.api.process);
+app.all(/^\/api\/([^\/]+)(\/.+\/?)*$/i, modules.lib.api.process);
 
 // Listen on sockets
 // Simply starts Socket.io over the server

@@ -9,6 +9,11 @@ module.exports = {
       path: ':id',
       controller: 'samples',
       fn: 'getSample'
+    },
+    {
+      path: ':id/:filter',
+      controller: 'samples',
+      fn: 'getSampleWithFilter'
     }
   ]
 };

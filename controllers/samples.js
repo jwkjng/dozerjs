@@ -11,6 +11,14 @@ module.exports = {
     ctx.body = 'hello world:' + sampleid;
 
   },
+  getSampleWithFilter: function (ctx) {
+
+    var self = this;
+    var sampleid = ctx.params.id;
+    var samplefilter = ctx.params.filter
+    ctx.body = 'hello world:' + sampleid + ': ' + samplefilter;
+
+  },
   getSamples: function (ctx) {
 
     var self = this;
