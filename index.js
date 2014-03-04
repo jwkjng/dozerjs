@@ -93,7 +93,7 @@ if (middleware.length) {
 // Calls the appropriate /api/{file}.js on HTTP req, ensures that controller is
 // in place and properly specified and calls appropriate controller method
 
-app.all('/api/:endpoint/*', modules.lib.api.process);
+app.all(/^\/api\/([^\/]+)(\/.+\/?)?$/i, modules.lib.api.process);
 
 // Listen on sockets
 // Simply starts Socket.io over the server

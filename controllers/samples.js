@@ -7,7 +7,7 @@ module.exports = {
   getSample: function (ctx) {
 
     var self = this;
-    var sampleid = (ctx.params.length > 0 ? ctx.params[0] : '');
+    var sampleid = ctx.params.id;
     ctx.body = 'hello world:' + sampleid;
 
   },
