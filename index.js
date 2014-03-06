@@ -53,7 +53,6 @@ app.use(koa_body());
 // app.use(express.json());
 // app.use(express.urlencoded());
 app.use(router(app));
-// app.use(slash());
 
 // Serve static assets
 app.use(koa_static(config.get('env.publicHTTP') || __dirname + 'public/src'));
